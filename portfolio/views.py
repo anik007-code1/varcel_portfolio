@@ -9,14 +9,20 @@ from .models import Experience, Skill, Project, Education, Contact
 
 def home(request):
     """Home page view with hero section and overview"""
-    featured_projects = Project.objects.filter(is_featured=True)[:3]
-    recent_experience = Experience.objects.first()
-    skills_by_category = {}
+    try:
+        featured_projects = Project.objects.filter(is_featured=True)[:3]
+        recent_experience = Experience.objects.first()
+        skills_by_category = {}
 
-    for skill in Skill.objects.all():
-        if skill.category not in skills_by_category:
-            skills_by_category[skill.category] = []
-        skills_by_category[skill.category].append(skill)
+        for skill in Skill.objects.all():
+            if skill.category not in skills_by_category:
+                skills_by_category[skill.category] = []
+            skills_by_category[skill.category].append(skill)
+    except Exception as e:
+        # Handle case where database tables don't exist yet
+        featured_projects = []
+        recent_experience = None
+        skills_by_category = {}
 
     context = {
         'featured_projects': featured_projects,
@@ -33,7 +39,10 @@ def about(request):
 
 def experience(request):
     """Experience page with work history"""
-    experiences = Experience.objects.all()
+    try:
+        experiences = Experience.objects.all()
+    except Exception:
+        experiences = []
     context = {
         'experiences': experiences,
     }
@@ -44,17 +53,21 @@ def projects(request):
     """Projects page with filtering"""
     category = request.GET.get('category', 'all')
 
-    if category == 'all':
-        projects_list = Project.objects.all()
-    else:
-        projects_list = Project.objects.filter(category=category)
+    try:
+        if category == 'all':
+            projects_list = Project.objects.all()
+        else:
+            projects_list = Project.objects.filter(category=category)
 
-    paginator = Paginator(projects_list, 6)  # Show 6 projects per page
-    page_number = request.GET.get('page')
-    projects_page = paginator.get_page(page_number)
+        paginator = Paginator(projects_list, 6)  # Show 6 projects per page
+        page_number = request.GET.get('page')
+        projects_page = paginator.get_page(page_number)
 
-    # Get all categories for filter buttons
-    categories = Project.CATEGORY_CHOICES
+        # Get all categories for filter buttons
+        categories = Project.CATEGORY_CHOICES
+    except Exception:
+        projects_page = []
+        categories = []
 
     context = {
         'projects': projects_page,
@@ -66,23 +79,32 @@ def projects(request):
 
 def skills(request):
     """Skills page organized by categories"""
-    skills_by_category = {}
+    try:
+        skills_by_category = {}
 
-    for skill in Skill.objects.all():
-        if skill.category not in skills_by_category:
-            skills_by_category[skill.category] = []
-        skills_by_category[skill.category].append(skill)
+        for skill in Skill.objects.all():
+            if skill.category not in skills_by_category:
+                skills_by_category[skill.category] = []
+            skills_by_category[skill.category].append(skill)
+
+        category_choices = Skill.CATEGORY_CHOICES
+    except Exception:
+        skills_by_category = {}
+        category_choices = []
 
     context = {
         'skills_by_category': skills_by_category,
-        'category_choices': Skill.CATEGORY_CHOICES,
+        'category_choices': category_choices,
     }
     return render(request, 'portfolio/skills.html', context)
 
 
 def education(request):
     """Education page with academic background"""
-    educations = Education.objects.all()
+    try:
+        educations = Education.objects.all()
+    except Exception:
+        educations = []
     context = {
         'educations': educations,
     }
