@@ -1,0 +1,242 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}Contact - Md Arifur Rahman Anik{% endblock %}
+
+{% block content %}
+<!-- Header Section -->
+<section class="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Get In Touch</h1>
+            <p class="text-xl text-gray-200 max-w-3xl mx-auto">
+                Let's discuss your project and how we can work together to bring your ideas to life
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Contact Information -->
+            <div>
+                <h2 class="text-3xl font-bold mb-8 text-gray-900">Let's Connect</h2>
+                <p class="text-lg text-gray-600 mb-8">
+                    I'm always interested in new opportunities, exciting projects, and meaningful collaborations. 
+                    Whether you have a project in mind, need technical consultation, or just want to say hello, 
+                    I'd love to hear from you.
+                </p>
+                
+                <!-- Contact Details -->
+                <div class="space-y-6">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-envelope text-blue-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Email</h3>
+                            <a href="mailto:aniklpu01@gmail.com" class="text-blue-600 hover:text-blue-800">
+                                aniklpu01@gmail.com
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-phone text-green-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Phone</h3>
+                            <a href="tel:+8801627220072" class="text-green-600 hover:text-green-800">
+                                +8801627220072
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-map-marker-alt text-purple-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Location</h3>
+                            <p class="text-gray-600">Nikunja 2, Dhaka, Bangladesh</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Social Links -->
+                <div class="mt-8">
+                    <h3 class="font-semibold text-gray-900 mb-4">Follow Me</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/anik007-code" target="_blank" 
+                           class="w-12 h-12 bg-gray-900 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition-colors duration-200">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/md-arifur-rahman-anik-a32232172/" target="_blank" 
+                           class="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors duration-200">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="https://aniklpu.cloud/" target="_blank" 
+                           class="w-12 h-12 bg-green-600 text-white rounded-lg flex items-center justify-center hover:bg-green-700 transition-colors duration-200">
+                            <i class="fas fa-globe text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Availability -->
+                <div class="mt-8 p-6 bg-green-50 rounded-lg border border-green-200">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-circle text-green-500 text-sm mr-2"></i>
+                        <span class="font-semibold text-green-800">Available for new projects</span>
+                    </div>
+                    <p class="text-green-700 text-sm">
+                        I'm currently accepting new freelance projects and full-time opportunities.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <h3 class="text-2xl font-bold mb-6 text-gray-900">Send Me a Message</h3>
+                
+                <form method="post" class="space-y-6">
+                    {% csrf_token %}
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                                Full Name *
+                            </label>
+                            <input type="text" id="name" name="name" required
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                   placeholder="Your full name">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                                Email Address *
+                            </label>
+                            <input type="email" id="email" name="email" required
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                                   placeholder="your.email@example.com">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
+                            Subject *
+                        </label>
+                        <input type="text" id="subject" name="subject" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                               placeholder="What's this about?">
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+                            Message *
+                        </label>
+                        <textarea id="message" name="message" rows="6" required
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200 resize-vertical"
+                                  placeholder="Tell me about your project, requirements, or just say hello..."></textarea>
+                    </div>
+                    
+                    <button type="submit" 
+                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        Send Message
+                    </button>
+                </form>
+                
+                <div class="mt-6 text-center text-sm text-gray-500">
+                    <p>I typically respond within 24 hours</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+            <p class="text-lg text-gray-600">Quick answers to common questions</p>
+        </div>
+        
+        <div class="space-y-6">
+            <div class="bg-gray-50 rounded-lg p-6">
+                <h3 class="text-lg font-semibold mb-3 flex items-center">
+                    <i class="fas fa-question-circle text-blue-600 mr-3"></i>
+                    What types of projects do you work on?
+                </h3>
+                <p class="text-gray-600">
+                    I specialize in machine learning applications, web development with Django, DevOps automation, 
+                    data processing pipelines, and API development. I'm particularly interested in projects that 
+                    involve AI/ML integration and scalable backend solutions.
+                </p>
+            </div>
+            
+            <div class="bg-gray-50 rounded-lg p-6">
+                <h3 class="text-lg font-semibold mb-3 flex items-center">
+                    <i class="fas fa-clock text-blue-600 mr-3"></i>
+                    What's your typical project timeline?
+                </h3>
+                <p class="text-gray-600">
+                    Project timelines vary depending on complexity and scope. Small projects typically take 1-2 weeks, 
+                    medium projects 3-6 weeks, and larger projects 2-3 months. I always provide detailed estimates 
+                    after understanding your requirements.
+                </p>
+            </div>
+            
+            <div class="bg-gray-50 rounded-lg p-6">
+                <h3 class="text-lg font-semibold mb-3 flex items-center">
+                    <i class="fas fa-handshake text-blue-600 mr-3"></i>
+                    Do you work remotely?
+                </h3>
+                <p class="text-gray-600">
+                    Yes, I work remotely with clients worldwide. I'm experienced in remote collaboration using 
+                    tools like Slack, Zoom, GitHub, and project management platforms. I'm also open to on-site 
+                    work for local clients in Dhaka, Bangladesh.
+                </p>
+            </div>
+            
+            <div class="bg-gray-50 rounded-lg p-6">
+                <h3 class="text-lg font-semibold mb-3 flex items-center">
+                    <i class="fas fa-code text-blue-600 mr-3"></i>
+                    What technologies do you prefer?
+                </h3>
+                <p class="text-gray-600">
+                    I primarily work with Python (Django, FastAPI), machine learning frameworks (TensorFlow, PyTorch), 
+                    DevOps tools (Docker, Kubernetes), and cloud platforms. I'm always open to learning new 
+                    technologies based on project requirements.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-16 bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold mb-4">Ready to Start Your Project?</h2>
+        <p class="text-xl text-gray-300 mb-8">
+            Let's turn your ideas into reality with cutting-edge technology and expert development
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="mailto:aniklpu01@gmail.com" class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-8 py-3 rounded-lg font-semibold transition-colors duration-200">
+                <i class="fas fa-envelope mr-2"></i>
+                Email Me Directly
+            </a>
+            <a href="{% url 'download_cv' %}" class="bg-white hover:bg-gray-100 text-gray-900 px-8 py-3 rounded-lg font-semibold transition-colors duration-200">
+                <i class="fas fa-download mr-2"></i>
+                Download CV
+            </a>
+            <a href="{% url 'projects' %}" class="border-2 border-white hover:bg-white hover:text-gray-900 px-8 py-3 rounded-lg font-semibold transition-colors duration-200">
+                <i class="fas fa-eye mr-2"></i>
+                View My Work
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
