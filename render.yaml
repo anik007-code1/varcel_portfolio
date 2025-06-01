@@ -1,0 +1,9 @@
+services:
+  - type: static_site
+    name: portfolio
+    buildCommand: echo "No build needed for static site"
+    staticPublishPath: .
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
