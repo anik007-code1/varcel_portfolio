@@ -42,6 +42,38 @@ Your portfolio is ready to be pushed to: https://github.com/anik007-code1/varcel
    git push origin main
    ```
 
+## Render Deployment (Recommended)
+
+### Quick Fix for Current Issue:
+
+The error you're seeing is because:
+1. Database tables weren't created (migrations not run)
+2. Port binding issue for Render
+
+**Solution**: Use the new `build.sh` script and updated configuration.
+
+### Render Deployment Steps:
+
+1. **Push the latest changes to GitHub** (includes fixes)
+2. **In Render Dashboard**:
+   - Go to https://render.com
+   - Connect your GitHub repository: `anik007-code1/varcel_portfolio`
+   - **Build Command**: `./build.sh`
+   - **Start Command**: `gunicorn portfolio_project.wsgi:application`
+   - **Environment**: Python 3.11
+
+3. **Environment Variables** (set in Render):
+   ```
+   PYTHON_VERSION=3.11.0
+   DEBUG=False
+   ```
+
+### What the build.sh script does:
+- Installs dependencies
+- Runs database migrations
+- Collects static files
+- Populates database with your CV data
+
 ## Vercel Deployment
 
 Once your code is on GitHub, you can deploy to Vercel:
